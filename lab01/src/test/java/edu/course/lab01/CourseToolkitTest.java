@@ -74,7 +74,7 @@ class CourseToolkitTest {
     void returnsAverageForValues() {
         int[] values = new int[]{10, 20, 30};
         double result = CourseToolkit.average(values);
-        assertEquals(20.0, result, 1e-9);
+        assertEquals(20.0, result);
     }
     @Test
     void rejectsNullArrayForAverage() {
@@ -89,7 +89,7 @@ class CourseToolkitTest {
     void returnsAverageForNegativeValues() {
         int[] values = new int[]{-10, -20, -30};
         double result = CourseToolkit.average(values);
-        assertEquals(-20.0, result, 1e-9);
+        assertEquals(-20.0, result);
     }
     @Test
     void doesNotModifyArrayForAverage() {
