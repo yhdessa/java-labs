@@ -1,12 +1,19 @@
 package edu.course.lab04;
 
+import java.util.Objects;
+
 public final class Book {
 
     private final String isbn;
     private final String title;
 
     public Book(String isbn, String title) {
-        // TODO: проверить isbn и title на null/blank
+        if (isbn == null || isbn.isBlank()) {
+            throw new IllegalArgumentException();
+        }
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException();
+        }
         this.isbn = isbn;
         this.title = title;
     }
@@ -21,13 +28,16 @@ public final class Book {
 
     @Override
     public boolean equals(Object obj) {
-        // TODO: равенство по isbn
-        throw new UnsupportedOperationException("TODO");
+        if (this == obj) {
+            return true;
+        } if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        } Book other = (Book) obj;
+        return Objects.equals(isbn, other.isbn);
     }
 
     @Override
     public int hashCode() {
-        // TODO: хеш от тех же полей, что в equals
-        throw new UnsupportedOperationException("TODO");
+        return Objects.hash(isbn);
     }
 }

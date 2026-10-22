@@ -7,28 +7,30 @@ public final class SampleRegistry {
 
     private final Map<SampleId, DataSample> entries = new HashMap<>();
 
-    // TODO: добавить или заменить значение
     public void put(SampleId id, DataSample sample) {
-        throw new UnsupportedOperationException("TODO");
+        if (id == null || sample == null) {
+            throw new IllegalArgumentException();
+        } entries.put(id, sample);
     }
 
-    // TODO: получить значение (что вернуть если ключа нет — реши сам)
     public DataSample get(SampleId id) {
-        throw new UnsupportedOperationException("TODO");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        } return entries.get(id);
     }
 
-    // TODO: удалить значение
     public void remove(SampleId id) {
-        throw new UnsupportedOperationException("TODO");
+        if (id == null) {
+            throw new IllegalArgumentException();
+        } entries.remove(id);
     }
 
-    // TODO: проверить наличие ключа
     public boolean contains(SampleId id) {
-        throw new UnsupportedOperationException("TODO");
+        if (id == null) throw new IllegalArgumentException();
+        return entries.containsKey(id);
     }
 
-    // TODO: узнать размер
     public int size() {
-        throw new UnsupportedOperationException("TODO");
+        return entries.size();
     }
 }

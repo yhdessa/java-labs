@@ -1,44 +1,56 @@
 package edu.course.lab04;
 
 public final class DataSample {
-
     private final String id;
     private final String label;
     private SampleStatus status;
     private final double[] features;
 
     public DataSample(String id, String label, SampleStatus status, double[] features) {
-        // TODO: перенести проверки из ЛР2 (id/label null/blank, status null, features null/empty)
-        // TODO: защитное копирование массива
-        throw new UnsupportedOperationException("TODO");
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException();
+        } if (label == null || label.isBlank()) {
+            throw new IllegalArgumentException();
+        } if (status == null) {
+            throw new IllegalArgumentException();
+        } if (features == null || features.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        this.id = id;
+        this.label = label;
+        this.status = status;
+        this.features = features.clone();
     }
-
     public String getId() {
-        throw new UnsupportedOperationException("TODO");
+        return id;
     }
 
     public String getLabel() {
-        throw new UnsupportedOperationException("TODO");
+        return label;
     }
 
     public SampleStatus getStatus() {
-        throw new UnsupportedOperationException("TODO");
+        return status;
     }
 
     public double[] getFeatures() {
-        // TODO: вернуть копию
-        throw new UnsupportedOperationException("TODO");
+        return features.clone();
     }
 
     public void changeStatus(SampleStatus newStatus) {
-        throw new UnsupportedOperationException("TODO");
+        if (newStatus == null) {
+            throw new IllegalArgumentException();
+        } status = newStatus;
     }
 
     public boolean isReady() {
-        throw new UnsupportedOperationException("TODO");
+        return status == SampleStatus.READY;
     }
 
     public double averageFeatures() {
-        throw new UnsupportedOperationException("TODO");
+        double sum = 0;
+        for (double feature : features) {
+            sum += feature;
+        } return sum / features.length;
     }
 }
