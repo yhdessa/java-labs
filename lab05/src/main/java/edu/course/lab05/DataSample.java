@@ -9,29 +9,68 @@ public final class DataSample {
     private final double[] features;
 
     public DataSample(String id, String label, String source, SampleStatus status, double[] features) {
-        // TODO: перенести проверки из ЛР2 + source null/blank
-        // TODO: защитное копирование массива
-        throw new UnsupportedOperationException("TODO");
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("id must not be blank");
+        }
+        if (label == null || label.isBlank()) {
+            throw new IllegalArgumentException("label must not be blank");
+        }
+        if (source == null || source.isBlank()) {
+            throw new IllegalArgumentException("source must not be blank");
+        }
+        if (status == null) {
+            throw new IllegalArgumentException("status must not be null");
+        }
+        if (features == null || features.length == 0) {
+            throw new IllegalArgumentException("features must not be empty");
+        }
+        this.id = id;
+        this.label = label;
+        this.source = source;
+        this.status = status;
+        this.features = features.clone();
     }
 
     public String getId() {
-        throw new UnsupportedOperationException("TODO");
+        return id;
     }
 
     public String getLabel() {
-        throw new UnsupportedOperationException("TODO");
+        return label;
     }
 
     public String getSource() {
-        throw new UnsupportedOperationException("TODO");
+        return source;
     }
 
     public SampleStatus getStatus() {
-        throw new UnsupportedOperationException("TODO");
+        return status;
     }
 
     public double[] getFeatures() {
-        // TODO: вернуть копию
-        throw new UnsupportedOperationException("TODO");
+        return features.clone();
+    }
+
+    public void changeStatus(SampleStatus newStatus) {
+        if (newStatus == null) {
+            throw new IllegalArgumentException("newStatus must not be null");
+        }
+        this.status = newStatus;
+    }
+
+    public boolean isReady() {
+        return status == SampleStatus.READY;
+    }
+
+    public int featureCount() {
+        return features.length;
+    }
+
+    public double averageFeatures() {
+        double sum = 0.0;
+        for (double value : features) {
+            sum += value;
+        }
+        return sum / features.length;
     }
 }

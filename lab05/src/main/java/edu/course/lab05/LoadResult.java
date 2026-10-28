@@ -8,15 +8,25 @@ public final class LoadResult {
     private final List<ValidationError> errors;
 
     public LoadResult(List<DataSample> samples, List<ValidationError> errors) {
-        // TODO: проверить списки на null + защититься от изменений снаружи
-        throw new UnsupportedOperationException("TODO");
+        if (samples == null) {
+            throw new IllegalArgumentException("samples must not be null");
+        }
+        if (errors == null) {
+            throw new IllegalArgumentException("errors must not be null");
+        }
+        this.samples = List.copyOf(samples);
+        this.errors = List.copyOf(errors);
     }
 
     public List<DataSample> samples() {
-        throw new UnsupportedOperationException("TODO");
+        return samples;
     }
 
     public List<ValidationError> errors() {
-        throw new UnsupportedOperationException("TODO");
+        return errors;
+    }
+
+    public boolean hasErrors() {
+        return !errors.isEmpty();
     }
 }
