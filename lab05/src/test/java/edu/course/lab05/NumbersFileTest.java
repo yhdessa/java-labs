@@ -26,9 +26,7 @@ class NumbersFileTest {
     @Test
     void readsFileContentInUtf8() throws IOException {
         Path file = writeNumbers();
-
         List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-
         assertEquals(List.of("10", "bad", "20"), lines);
         assertEquals(3, lines.size());
     }
@@ -37,12 +35,10 @@ class NumbersFileTest {
     void convertsLinesToIntegersWithLoop() throws IOException {
         Path file = tempDir.resolve("only-numbers.txt");
         Files.write(file, List.of("10", "20", "30"), StandardCharsets.UTF_8);
-
         List<Integer> numbers = new ArrayList<>();
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
             numbers.add(Integer.parseInt(line));
         }
-
         assertEquals(List.of(10, 20, 30), numbers);
     }
 
@@ -50,13 +46,11 @@ class NumbersFileTest {
     void badLineThrowsNumberFormatException() throws IOException {
         Path file = writeNumbers();
         List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-
         NumberFormatException exception = assertThrows(NumberFormatException.class, () -> {
             for (String line : lines) {
                 Integer.parseInt(line);
             }
         });
-
         assertTrue(exception.getMessage().contains("bad"));
     }
 }

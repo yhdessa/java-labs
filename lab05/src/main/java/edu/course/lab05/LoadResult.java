@@ -9,10 +9,10 @@ public final class LoadResult {
 
     public LoadResult(List<DataSample> samples, List<ValidationError> errors) {
         if (samples == null) {
-            throw new IllegalArgumentException("samples must not be null");
+            throw new IllegalArgumentException();
         }
         if (errors == null) {
-            throw new IllegalArgumentException("errors must not be null");
+            throw new IllegalArgumentException();
         }
         this.samples = List.copyOf(samples);
         this.errors = List.copyOf(errors);

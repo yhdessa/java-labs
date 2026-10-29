@@ -10,13 +10,13 @@ public final class ValidationError {
 
     public ValidationError(int lineNumber, String field, String message) {
         if (lineNumber <= 0) {
-            throw new IllegalArgumentException("lineNumber must be positive");
+            throw new IllegalArgumentException();
         }
         if (field == null || field.isBlank()) {
-            throw new IllegalArgumentException("field must not be blank");
+            throw new IllegalArgumentException();
         }
         if (message == null || message.isBlank()) {
-            throw new IllegalArgumentException("message must not be blank");
+            throw new IllegalArgumentException();
         }
         this.lineNumber = lineNumber;
         this.field = field;

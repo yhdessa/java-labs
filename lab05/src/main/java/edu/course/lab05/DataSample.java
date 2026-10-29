@@ -10,19 +10,19 @@ public final class DataSample {
 
     public DataSample(String id, String label, String source, SampleStatus status, double[] features) {
         if (id == null || id.isBlank()) {
-            throw new IllegalArgumentException("id must not be blank");
+            throw new IllegalArgumentException();
         }
         if (label == null || label.isBlank()) {
-            throw new IllegalArgumentException("label must not be blank");
+            throw new IllegalArgumentException();
         }
         if (source == null || source.isBlank()) {
-            throw new IllegalArgumentException("source must not be blank");
+            throw new IllegalArgumentException();
         }
         if (status == null) {
-            throw new IllegalArgumentException("status must not be null");
+            throw new IllegalArgumentException();
         }
         if (features == null || features.length == 0) {
-            throw new IllegalArgumentException("features must not be empty");
+            throw new IllegalArgumentException();
         }
         this.id = id;
         this.label = label;
@@ -53,7 +53,7 @@ public final class DataSample {
 
     public void changeStatus(SampleStatus newStatus) {
         if (newStatus == null) {
-            throw new IllegalArgumentException("newStatus must not be null");
+            throw new IllegalArgumentException();
         }
         this.status = newStatus;
     }

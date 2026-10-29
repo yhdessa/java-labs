@@ -15,7 +15,7 @@ public final class SampleFileLoader {
 
     public LoadResult load(Path path) {
         if (path == null) {
-            throw new IllegalArgumentException("path must not be null");
+            throw new IllegalArgumentException();
         }
 
         List<String> lines = readLines(path);
